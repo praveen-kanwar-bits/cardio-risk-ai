@@ -27,7 +27,7 @@ with st.expander("ℹ️ Click here for Clinical Feature Descriptions"):
     - **Oldpeak**: ST depression induced by exercise relative to rest
     - **Slope**: The slope of the peak exercise ST segment (0 = upsloping, 1 = flat, 2 = downsloping)
     - **CA**: Number of major vessels (0-4) colored by flourosopy
-    - **Thal**: 0 = normal; 1 = fixed defect; 2 = reversable defect
+    - **Thal**: 0-3 (0 = error/null; 1 = normal; 2 = fixed defect; 3 = reversable defect)
     """)
 
 st.header("Patient Data Entry")
@@ -49,7 +49,7 @@ with col2:
     oldpeak = st.number_input("Oldpeak (ST depression)", value=1.0)
     slope = st.selectbox("Slope (0-2)", [0, 1, 2])
     ca = st.selectbox("Number of Major Vessels (0-4)", [0, 1, 2, 3, 4])
-    thal = st.selectbox("Thal (0-2)", [0, 1, 2], index=2)
+    thal = st.selectbox("Thal (0-3)", [0, 1, 2, 3], index=2)
 
 st.markdown("---")
 
