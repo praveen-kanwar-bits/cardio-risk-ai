@@ -1,6 +1,7 @@
-import streamlit as st
 import pandas as pd
-from utils import predict_heart_disease
+import streamlit as st
+
+from src.inference import predict_heart_disease
 
 st.set_page_config(page_title="CardioRisk-AI: Heart Disease Predictor", layout="centered")
 
@@ -56,10 +57,10 @@ if st.button("Predict Risk", type="primary"):
     # Note: Column names must match the training set exactly. 
     # utils.py validate_input will ensure the correct order based on feature_columns.pkl
     data_dict = {
-        'age': [age], 'sex': [sex], 'cp': [cp], 'trestbps': [trestbps],
-        'chol': [chol], 'fbs': [fbs], 'restecg': [restecg],
-        'thalach': [thalach], 'exang': [exang], 'oldpeak': [oldpeak],
-        'slope': [slope], 'ca': [ca], 'thal': [thal]
+            'age': [age], 'sex': [sex], 'cp': [cp], 'trestbps': [trestbps],
+            'chol': [chol], 'fbs': [fbs], 'restecg': [restecg],
+            'thalach': [thalach], 'exang': [exang], 'oldpeak': [oldpeak],
+            'slope': [slope], 'ca': [ca], 'thal': [thal]
     }
     data = pd.DataFrame(data_dict)
 
@@ -76,8 +77,8 @@ if st.button("Predict Risk", type="primary"):
             if probability is not None:
                 st.write(f"**Confidence / Probability:** {probability * 100:.1f}%")
             st.write("Interpretation: The model indicates a low likelihood of heart disease. Maintain a healthy lifestyle.")
-            
+
         st.info("🔒 Note: The data you entered was processed in memory and has not been saved or stored in any database.")
-            
+
     except Exception as e:
         st.error(f"An error occurred during prediction: {str(e)}")
