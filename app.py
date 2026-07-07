@@ -70,12 +70,12 @@ if st.button("Predict Risk", type="primary"):
         if result == 1:
             st.error("🚨 **Prediction: High Risk of Heart Disease**")
             if probability is not None:
-                st.write(f"**Confidence / Probability:** {probability * 100:.1f}%")
+                st.write(f"**Heart Disease Risk Probability:** {probability * 100:.1f}%")
             st.write("Interpretation: The model indicates a high likelihood of heart disease based on the provided clinical parameters. Further medical evaluation is strongly recommended.")
         else:
             st.success("✅ **Prediction: Low Risk of Heart Disease**")
             if probability is not None:
-                st.write(f"**Confidence / Probability:** {probability * 100:.1f}%")
+                st.write(f"**Heart Disease Risk Probability:** {probability * 100:.1f}%")
             st.write("Interpretation: The model indicates a low likelihood of heart disease. Maintain a healthy lifestyle.")
 
         st.info("🔒 Note: The data you entered was processed in memory and has not been saved or stored in any database.")

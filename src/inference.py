@@ -58,13 +58,18 @@ def predict_heart_disease(data):
     # 2. Load cached model
     model = load_model()
 
-    # 3. Predict
-    prediction = model.predict(validated_data)[0]
-
-    # 4. Get probability if available
-    probability = None
+    # 3 & 4. Predict with Custom Threshold (0.35) to match our Gold Standard Recall goal
     if hasattr(model, "predict_proba"):
         probabilities = model.predict_proba(validated_data)[0]
-        probability = probabilities[1] if prediction == 1 else probabilities[0]
+        risk_probability = probabilities[1]
+        
+        # Apply the same 0.35 threshold used in our evaluation notebook
+        prediction = 1 if risk_probability >= 0.35 else 0
+        
+        # We'll always return the probability of being High Risk
+        probability = risk_probability
+    else:
+        prediction = model.predict(validated_data)[0]
+        probability = 1.0
 
     return prediction, probability
